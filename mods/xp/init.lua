@@ -185,6 +185,9 @@ end
 function xp.miner_xp()
 	minetest.register_on_dignode(function(pos, oldnode, digger)
 		local miner_xp = minetest.registered_nodes[oldnode.name].miner_xp
+		if not digger then
+			return
+		end
 		local player = digger:get_player_name()
 		local player_lvls = skills.lvls[player]
 		if not miner_xp then
